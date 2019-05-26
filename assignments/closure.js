@@ -13,7 +13,7 @@
 function plusTwo(val) {
   const num = 2;
   let res = num;
-  return (() => {res =+ val; return res;})();
+  return (() => { res += val; return res; })();
 };
 console.log(plusTwo(4));
 
@@ -62,7 +62,7 @@ const counterFactory = (() => {
       changeBy(-1);
       return count;
     },
-  };   
+  };
 })();
 
 counterFactory.increment();
