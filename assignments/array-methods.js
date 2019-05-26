@@ -107,19 +107,45 @@ function shirtSwap(size, cb) {
 }
 
 let xsGroup = shirtSwap("XS", group => group);
-
 let sGroup = shirtSwap("S", group => group);
-
 let mGroup = shirtSwap("M", group => group);
-
 let lGroup = shirtSwap("L", group => group);
-
 let xlGroup = shirtSwap("XL", group => group);
-
 let xxlGroup = shirtSwap("2XL", group => group);
-
 let xxxlGroup = shirtSwap("3XL", group => group);
 
-console.log(xsGroup, sGroup, mGroup, lGroup, xlGroup, xxlGroup, xxxlGroup);
+const groups = [xsGroup, sGroup, mGroup, lGroup, xlGroup, xxlGroup, xxlGroup];
+
+console.log(groups);
 
 // Problem 3
+// Let's make this a relay race! The sweaty shirt will act as the baton. Biggest donors run first, and the least. 
+// Assign the distance of each leg inversely proportional to the amount donated.
+
+const distance = 5000;
+
+
+function relayRace(groupsArr) {
+    let distanceByDollar = [];
+    let money = groupsArr.forEach((group)=>{
+        let donationsArr = group.map(runner => runner.donation);
+        let total = donationsArr.reduce((a, b) => a+b);
+    });
+    
+    console.log(money);
+    
+    // function findRatio(group) {
+    //     group.forEach(runner => runner.distance = )
+    // }
+}
+
+// relayRace(groups);
+
+// let money = groupsArr.forEach((group)=>{
+//     let donationsArr = group.map(runner => runner.donation);
+//     let total = donationsArr.reduce((a, b) => a+b);
+//     return total;
+    
+// });
+
+console.log(relayRace(groups));

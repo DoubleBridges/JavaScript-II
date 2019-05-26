@@ -1,20 +1,25 @@
 // ==== Challenge 1: Write your own closure ====
 // Write a simple closure of your own creation.  Keep it simple!
 
-function plusTwo(val) {
-  let num = 2;
-  val;
-  let addsToNum = () => {
-    return num + val;
-  };
-  return addsToNum();
-}
+// function plusTwo(val) {
+//   const num = 2;
+//   val;
+//   let addsToNum = () => {
+//     return num + val;
+//   };
+//   return addsToNum();
+// };
 
+function plusTwo(val) {
+  const num = 2;
+  let res = num;
+  return (() => {res =+ val; return res;})();
+};
 console.log(plusTwo(4));
 
-let thisNum = plusTwo(35);
+let thisNum = plusTwo;
 
-console.log(thisNum)
+console.log(thisNum(35))
 
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
