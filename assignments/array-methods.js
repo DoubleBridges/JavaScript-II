@@ -85,7 +85,9 @@ let ticketPriceTotal = runners.reduce((acc, runner) => acc + runner.donation, 0)
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
-// Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
+// Now that you have used .forEach(), .map(), .filter(), and .reduce().  
+// I want you to think of potential problems you could solve given the data set and the 5k fun run theme. 
+// Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
 // Create a contact list for everyone that donated less than $100 so that you can shame them into volunteer work at next year's run.
@@ -127,9 +129,7 @@ console.log(groups);
 // Assign the distance of each leg inversely proportional to the amount donated. Return a starting grid so 
 // everyone will know their run order and distance to run.
 
-
-
-const relayRace = function(arr)  {
+const relayRace = function (arr) {
 
     const raceDistance = 5000;
 
@@ -141,61 +141,58 @@ const relayRace = function(arr)  {
     let xxlRelay = xxlGroup;
     let xxxlRelay = xxxlGroup;
 
-    const relayGroups = [xsRelay, sRelay, mRelay, lRelay, xlRelay, xxlRelay, xxxlRelay];
-
-
-    const moneyByGroup = function(group) {
-        return group.reduce((acc, runner) => acc + runner.donation, 0); 
+    const moneyByGroup = function (group) {
+        return group.reduce((acc, runner) => acc + runner.donation, 0);
     };
 
-    const totalByGroup = function(group) {
+    const totalByGroup = function (group) {
         return group.donationaTotal = moneyByGroup(group);
     };
 
-    const distanceToRun = function(group) {
-        return group.forEach(runner => runner.distance = `${((runner.donation/group.donationaTotal) * raceDistance).toFixed(2)} m` );
+    const distanceToRun = function (group) {
+        return group.forEach(runner => runner.distance = `${((runner.donation / group.donationaTotal) * raceDistance).toFixed(2)} m`);
     };
 
-    const disToRunArr = function(group) {
+    const disToRunArr = function (group) {
         return group.map(runner => runner.distance);
     };
 
-    const reorderDistance = function(group) {
+    const reorderDistance = function (group) {
         let newArr = disToRunArr(group).reverse();
         //Can't figure out how to loop through two arrays simultaneously with an array method
-        for(let i=0; i<newArr.length; i++) {
+        for (let i = 0; i < newArr.length; i++) {
             group[i].distance = newArr[i];
         };
     };
 
-    const organizedRace = function(arr) {
+    const organizedRace = function (arr) {
 
-        arr.forEach(function(group) {
+        arr.forEach(function (group) {
             totalByGroup(group);
             distanceToRun(group);
             disToRunArr(group);
             reorderDistance(group);
         });
     };
-    return organizedRace(arr);
 
-//     const startingGrid = function(arr) {
+    organizedRace(arr);
+    // Tried using .map over the main array to assign the variable name of the inner arrays to a property with the array as a value.
+    // Once arrays are in another array, they no longer have a variable name.
+    // That's what Object {key: value} is for.
+    let startingGrid = {
+        xsRelay,
+        sRelay,
+        mRelay,
+        lRelay,
+        xlRelay,
+        xxlRelay,
+        xxxlRelay
+    }
 
-//         arr.forEach(function(group) {
-//             const startGridArr = [group.map]
-            
-//         });
+    return startingGrid;
 
-//     }
-//     return startingGrid(relayGroups)
 };
 
-relayRace(groups);
-console.log(groups);
+console.log(relayRace(groups));
 
 
-    // moneyByGroup(xsGroup);
-    // totalByGroup(xsGroup);
-    // distanceToRun(xsGroup);
-    // reorderDistance(xsGroup);
-    // console.log(xsGroup);
