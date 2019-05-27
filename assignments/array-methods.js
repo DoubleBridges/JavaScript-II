@@ -55,6 +55,7 @@ const runners = [{ "id": 1, "first_name": "Charmain", "last_name": "Seiler", "em
 
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
+
 let fullName = [];
 
 runners.forEach(runner => {
@@ -71,13 +72,15 @@ console.log(allCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
+
 let largeShirts = [runners.filter(runner => runner.shirt_size === "L")];
 
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
-let ticketPriceTotal = [runners.reduce((acc, runner) => acc + runner.donation, 0)];
+
+let ticketPriceTotal = runners.reduce((acc, runner) => acc + runner.donation, 0);
 
 console.log(ticketPriceTotal);
 
@@ -86,6 +89,7 @@ console.log(ticketPriceTotal);
 
 // Problem 1
 // Create a contact list for everyone that donated less than $100 so that you can shame them into volunteer work at next year's run.
+
 let cheapSkates = [];
 
 runners.forEach(runner => {
@@ -120,32 +124,78 @@ console.log(groups);
 
 // Problem 3
 // Let's make this a relay race! The sweaty shirt will act as the baton. Biggest donors run first, and the least. 
-// Assign the distance of each leg inversely proportional to the amount donated.
+// Assign the distance of each leg inversely proportional to the amount donated. Return a starting grid so 
+// everyone will know their run order and distance to run.
 
-const distance = 5000;
 
 
-function relayRace(groupsArr) {
-    let distanceByDollar = [];
-    let money = groupsArr.forEach((group)=>{
-        let donationsArr = group.map(runner => runner.donation);
-        let total = donationsArr.reduce((a, b) => a+b);
-    });
-    
-    console.log(money);
-    
-    // function findRatio(group) {
-    //     group.forEach(runner => runner.distance = )
-    // }
-}
+const relayRace = function(arr)  {
 
-// relayRace(groups);
+    const raceDistance = 5000;
 
-// let money = groupsArr.forEach((group)=>{
-//     let donationsArr = group.map(runner => runner.donation);
-//     let total = donationsArr.reduce((a, b) => a+b);
-//     return total;
-    
-// });
+    let xsRelay = xsGroup;
+    let sRelay = sGroup;
+    let mRelay = mGroup;
+    let lRelay = lGroup;
+    let xlRelay = xlGroup;
+    let xxlRelay = xxlGroup;
+    let xxxlRelay = xxxlGroup;
 
-console.log(relayRace(groups));
+    const relayGroups = [xsRelay, sRelay, mRelay, lRelay, xlRelay, xxlRelay, xxxlRelay];
+
+
+    const moneyByGroup = function(group) {
+        return group.reduce((acc, runner) => acc + runner.donation, 0); 
+    };
+
+    const totalByGroup = function(group) {
+        return group.donationaTotal = moneyByGroup(group);
+    };
+
+    const distanceToRun = function(group) {
+        return group.forEach(runner => runner.distance = `${((runner.donation/group.donationaTotal) * raceDistance).toFixed(2)} m` );
+    };
+
+    const disToRunArr = function(group) {
+        return group.map(runner => runner.distance);
+    };
+
+    const reorderDistance = function(group) {
+        let newArr = disToRunArr(group).reverse();
+        //Can't figure out how to loop through two arrays simultaneously with an array method
+        for(let i=0; i<newArr.length; i++) {
+            group[i].distance = newArr[i];
+        };
+    };
+
+    const organizedRace = function(arr) {
+
+        arr.forEach(function(group) {
+            totalByGroup(group);
+            distanceToRun(group);
+            disToRunArr(group);
+            reorderDistance(group);
+        });
+    };
+    return organizedRace(arr);
+
+//     const startingGrid = function(arr) {
+
+//         arr.forEach(function(group) {
+//             const startGridArr = [group.map]
+            
+//         });
+
+//     }
+//     return startingGrid(relayGroups)
+};
+
+relayRace(groups);
+console.log(groups);
+
+
+    // moneyByGroup(xsGroup);
+    // totalByGroup(xsGroup);
+    // distanceToRun(xsGroup);
+    // reorderDistance(xsGroup);
+    // console.log(xsGroup);
